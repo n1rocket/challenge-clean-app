@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Challenge</string>
+    <string name="network_down">No hay conexión a internet</string>
+    <string name="network_down_timeout">Se ha agotado el tiempo de espera, inténtalo de nuevo.</string>
+    <string name="network_error">Ha ocurrido un error</string>
+    <string name="operation_ok">Operación realizada correctamente</string>
+    <string name="empty">No hay elementos</string>
+</resources>

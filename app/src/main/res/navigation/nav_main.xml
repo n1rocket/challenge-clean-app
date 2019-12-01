@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/interventionsFragment">
+
+    <fragment
+        android:id="@+id/interventionsFragment"
+        android:name="com.abuenoben.challenge.ui.main.MainFragment">
+        <!--
+        <action
+                android:id="@+id/action_interventionsFragment_to_interventionDetailFragment"
+                app:destination="@id/interventionDetailFragment" />
+        -->
+    </fragment>
+    <!--
+     <fragment
+             android:id="@+id/interventionDetailFragment"
+             android:name="es.vanadis.sdk.features.interventions.detail.InterventionDetailFragment"
+             android:label="Intervention">
+         <argument
+                 android:name="intervention"
+                 app:argType="string" />
+     </fragment>
+     -->
+
+</navigation>
