@@ -10,7 +10,10 @@ import com.abuenoben.challenge.R
 import kotlinx.android.synthetic.main.cell_favorite.view.*
 
 
-class MainAdapter(val onClick: ((response: String) -> Unit)? = null) : ListAdapter<String, MainAdapter.StringViewHolder>(Diff()) {
+class MainAdapter(
+    val onClick: ((response: String) -> Unit)? = null,
+    val onClickRemove: ((response: String) -> Unit)? = null
+) : ListAdapter<String, MainAdapter.StringViewHolder>(Diff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StringViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -24,6 +27,7 @@ class MainAdapter(val onClick: ((response: String) -> Unit)? = null) : ListAdapt
     inner class StringViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(response: String) {
             itemView.setOnClickListener { onClick?.invoke(response) }
+            itemView.removeButton.setOnClickListener { onClickRemove?.invoke(response) }
             with(itemView.title) { text = response }
         }
     }

@@ -15,6 +15,18 @@ import org.koin.android.ext.android.inject
 class MainFragment : Fragment() {
     private val viewModel: MainViewModel by inject()
 
+    private val onClickItem = object:(String) -> Unit {
+        override fun invoke(item: String) {
+            viewModel.itemClicked(item)
+        }
+    }
+
+    private val onClickRemoveItem = object:(String) -> Unit {
+        override fun invoke(item: String) {
+            viewModel.itemClickedToRemove(item)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,9 +40,7 @@ class MainFragment : Fragment() {
         //Setup list with adapter
         val linearLayoutManager = LinearLayoutManager(context)
         recycler.layoutManager = linearLayoutManager
-        val adapter = MainAdapter {
-            viewModel.itemClicked(it)
-        }
+        val adapter = MainAdapter(onClickItem, onClickRemoveItem)
         recycler.adapter = adapter
 
         //SwipeRefresh
@@ -41,6 +51,7 @@ class MainFragment : Fragment() {
         //Observe items from ViewModel for update list
         viewModel.items().observe(this, Observer {
             adapter.submitList(it)
+            adapter.notifyDataSetChanged()
 
             //Empty description text when list is empty
             name.visibility = when (it.isEmpty()) {
@@ -58,4 +69,6 @@ class MainFragment : Fragment() {
 
         viewModel.loadItems()
     }
+
+
 }

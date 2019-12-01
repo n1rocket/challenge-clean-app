@@ -13,6 +13,7 @@ import kotlinx.coroutines.withContext
 
 class MainViewModel(private val repository: FavoritesRepository) : ViewModel() {
 
+    private var data : MutableList<String> = mutableListOf()
     private val items = MutableLiveData<List<String>>()
     private val navigationToDetail = SingleLiveEvent<String>()
 
@@ -29,7 +30,11 @@ class MainViewModel(private val repository: FavoritesRepository) : ViewModel() {
     }
 
     fun loadItems() {
-        launchDataLoad()
+        if (data.isEmpty()) {
+            launchDataLoad()
+        }else{
+            items.postValue(data)
+        }
     }
 
     private fun launchDataLoad() {
@@ -42,8 +47,9 @@ class MainViewModel(private val repository: FavoritesRepository) : ViewModel() {
     private suspend fun requestItems() = withContext(Dispatchers.Default) {
         when (val response = repository.favorites()) {
             is ResponseResult.Success -> {
-                print(response.value)
-                items.postValue(response.value.result)
+                data.clear()
+                data.addAll(response.value.result)
+                items.postValue(data)
             }
             else -> {
                 print("Error Request")
@@ -55,5 +61,10 @@ class MainViewModel(private val repository: FavoritesRepository) : ViewModel() {
     fun itemClicked(itemClicked: String) {
         //Item Clicked from list
         navigationToDetail.value = itemClicked
+    }
+
+    fun itemClickedToRemove(itemToRemove: String) {
+        data.remove(itemToRemove)
+        items.value = data
     }
 }
