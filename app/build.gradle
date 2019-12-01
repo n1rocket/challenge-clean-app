@@ -33,25 +33,25 @@ android {
         dev {
             dimension "normal"
             buildConfigField "String", "ENVIRONMENT", '"DEV"'
-            buildConfigField "String", "BASE_URL", '"https://challenge.com/dev/"'
+            buildConfigField "String", "BASE_URL", '"https://challenge.ninetynine.com/"'
         }
 
         tes {
             dimension "normal"
             buildConfigField "String", "ENVIRONMENT", '"TEST"'
-            buildConfigField "String", "BASE_URL", '"https://challenge.com/tes/"'
+            buildConfigField "String", "BASE_URL", '"https://challenge.ninetynine.com/"'
         }
 
         pre {
             dimension "normal"
             buildConfigField "String", "ENVIRONMENT", '"PRE"'
-            buildConfigField "String", "BASE_URL", '"https://challenge.com/pre/"'
+            buildConfigField "String", "BASE_URL", '"https://challenge.ninetynine.com/"'
         }
 
         pro {
             dimension "normal"
             buildConfigField "String", "ENVIRONMENT", '"PRO"'
-            buildConfigField "String", "BASE_URL", '"https://challenge.com/pro/"'
+            buildConfigField "String", "BASE_URL", '"https://challenge.ninetynine.com/"'
         }
     }
 }

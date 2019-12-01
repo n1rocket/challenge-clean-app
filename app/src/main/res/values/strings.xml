@@ -5,4 +5,8 @@
     <string name="network_error">Ha ocurrido un error</string>
     <string name="operation_ok">Operación realizada correctamente</string>
     <string name="empty">No hay elementos</string>
+    <string name="name">Name</string>
+    <string name="hot">Hot</string>
+    <string name="riccode">Ric Code</string>
+    <string name="category">Category</string>
 </resources>

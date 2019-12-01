@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abuenoben.challenge.setup.network.FavoritesRepository
 import com.abuenoben.challenge.setup.network.ResponseResult
+import com.abuenoben.challenge.setup.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -13,9 +14,14 @@ import kotlinx.coroutines.withContext
 class MainViewModel(private val repository: FavoritesRepository) : ViewModel() {
 
     private val items = MutableLiveData<List<String>>()
+    private val navigationToDetail = SingleLiveEvent<String>()
 
-    fun getItems(): LiveData<List<String>> {
+    fun items(): LiveData<List<String>> {
         return items
+    }
+
+    fun navigationToDetail(): SingleLiveEvent<String> {
+        return navigationToDetail
     }
 
     fun refreshList() {
@@ -29,12 +35,11 @@ class MainViewModel(private val repository: FavoritesRepository) : ViewModel() {
     private fun launchDataLoad() {
         viewModelScope.launch {
             requestItems()
-            // Modify UI
         }
     }
 
+    // Heavy work
     private suspend fun requestItems() = withContext(Dispatchers.Default) {
-        // Heavy work
         when (val response = repository.favorites()) {
             is ResponseResult.Success -> {
                 print(response.value)
@@ -49,5 +54,6 @@ class MainViewModel(private val repository: FavoritesRepository) : ViewModel() {
 
     fun itemClicked(itemClicked: String) {
         //Item Clicked from list
+        navigationToDetail.value = itemClicked
     }
 }

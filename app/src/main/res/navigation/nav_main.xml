@@ -2,26 +2,23 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_main"
-    app:startDestination="@id/interventionsFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/interventionsFragment"
+        android:id="@+id/mainFragment"
+        android:label="Favorites"
         android:name="com.abuenoben.challenge.ui.main.MainFragment">
-        <!--
         <action
-                android:id="@+id/action_interventionsFragment_to_interventionDetailFragment"
-                app:destination="@id/interventionDetailFragment" />
-        -->
+                android:id="@+id/action_mainFragment_to_detailFragment"
+                app:destination="@id/detailFragment" />
     </fragment>
-    <!--
      <fragment
-             android:id="@+id/interventionDetailFragment"
-             android:name="es.vanadis.sdk.features.interventions.detail.InterventionDetailFragment"
-             android:label="Intervention">
+             android:id="@+id/detailFragment"
+             android:name="com.abuenoben.challenge.ui.detail.DetailFragment"
+             android:label="Detail">
          <argument
-                 android:name="intervention"
+                 android:name="favorite"
                  app:argType="string" />
      </fragment>
-     -->
 
 </navigation>

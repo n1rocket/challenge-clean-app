@@ -40,7 +40,7 @@ class FavoritesRepository(
                 checkException(context, e)
             }
         } else {
-            context.getMockResponseResult(R.raw.favorites)
+            context.getMockResponseResult(R.raw.favorite)
         }
     }
 }
