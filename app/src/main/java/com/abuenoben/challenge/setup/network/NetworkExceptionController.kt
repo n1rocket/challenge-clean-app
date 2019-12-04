@@ -9,27 +9,27 @@ import java.net.UnknownHostException
 
 //HELPERS TO HANDLE ERRORS
 
-object NetworkExceptionController {
+class NetworkExceptionController(private val context: Context) {
 
-    fun checkException(context: Context, e: Exception): ResponseResult.Error {
+    fun checkException(e: Exception): ResponseResult.Error {
         print("--> checkException $e")
         return when (e) {
             is UnknownHostException -> ResponseResult.Error(context.getString(R.string.network_down), e)
             is SocketTimeoutException -> ResponseResult.Error(context.getString(R.string.network_down_timeout), e)
-            else -> defaultError(context, e)
+            else -> defaultError(e)
         }
     }
 
-    fun defaultError(context: Context, e: Exception? = null): ResponseResult.Error {
+    private fun defaultError(e: Exception? = null): ResponseResult.Error {
         print("--> defaultError $e")
         return ResponseResult.Error(context.getString(R.string.network_error), e)
     }
 
-    fun defaultOk(context: Context): ResponseResult.Error {
+    private fun defaultOk(): ResponseResult.Error {
         return ResponseResult.Error(context.getString(R.string.operation_ok))
     }
 
-    fun <T : Any> checkResponse(context: Context, response: Response<T>): ResponseResult<T> {
+    fun <T : Any> checkResponse(response: Response<T>): ResponseResult<T> {
         print("--> response $response")
         return when {
             response.code() == 204 -> ResponseResult.NotContent("204")
@@ -40,14 +40,14 @@ object NetworkExceptionController {
                     response.errorBody()?.string()?.let {
                         val responseResult = it.fromJson<ErrorBean>()
                         ResponseResult.Error(responseResult.message)
-                    } ?: defaultOk(context)
+                    } ?: defaultOk()
                 }
             response.code() == 403 -> ResponseResult.Forbidden("403")
             response.code() == 503 -> ResponseResult.Error(context.getString(R.string.network_down))
             else -> response.errorBody()?.string()?.let {
                 val responseResult = it.fromJson<ErrorBean>()
                 ResponseResult.Error(responseResult.message)
-            } ?: defaultError(context)
+            } ?: defaultError()
         }
     }
 }

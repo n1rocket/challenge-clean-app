@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abuenoben.challenge.data.model.FavoriteResponse
-import com.abuenoben.challenge.setup.network.FavoritesRepository
+import com.abuenoben.challenge.data.repository.FavoritesRepositoryImpl
 import com.abuenoben.challenge.setup.network.ResponseResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DetailViewModel(private val repository: FavoritesRepository) : ViewModel() {
+class DetailViewModel(private val repository: FavoritesRepositoryImpl) : ViewModel() {
 
     private val item = MutableLiveData<FavoriteResponse>()
 

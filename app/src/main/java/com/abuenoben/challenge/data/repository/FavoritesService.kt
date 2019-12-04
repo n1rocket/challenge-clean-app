@@ -1,4 +1,4 @@
-package com.abuenoben.challenge.setup.network
+package com.abuenoben.challenge.data.repository
 
 import com.abuenoben.challenge.data.model.FavoriteResponse
 import com.abuenoben.challenge.data.model.FavoritesResponse

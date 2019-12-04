@@ -2,8 +2,8 @@ package com.abuenoben.challenge.setup.di
 
 import android.util.Log
 import com.abuenoben.challenge.BuildConfig
+import com.abuenoben.challenge.data.repository.FavoritesService
 import com.abuenoben.challenge.setup.network.AppInterceptor
-import com.abuenoben.challenge.setup.network.FavoritesService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

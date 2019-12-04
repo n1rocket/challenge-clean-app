@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abuenoben.challenge.setup.network.FavoritesRepository
+import com.abuenoben.challenge.data.repository.FavoritesRepositoryImpl
 import com.abuenoben.challenge.setup.network.ResponseResult
 import com.abuenoben.challenge.setup.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainViewModel(private val repository: FavoritesRepository) : ViewModel() {
+class MainViewModel(private val repository: FavoritesRepositoryImpl) : ViewModel() {
 
     private var data : MutableList<String> = mutableListOf()
     private val items = MutableLiveData<List<String>>()

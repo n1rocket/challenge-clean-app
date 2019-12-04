@@ -6,6 +6,7 @@ import com.abuenoben.challenge.setup.di.appComponent
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.module.Module
 
 class App : Application() {
     override fun onCreate() {
@@ -23,5 +24,7 @@ class App : Application() {
         }
     }
 
-    private fun provideComponent() = appComponent
+    private fun provideComponent(): List<Module> {
+        return appComponent
+    }
 }
