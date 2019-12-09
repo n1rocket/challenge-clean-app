@@ -2,23 +2,23 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_main"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/favoritesFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/favoritesFragment"
         android:label="Favorites"
-        android:name="com.abuenoben.challenge.ui.main.MainFragment">
+        android:name="com.abuenoben.challenge.ui.main.FavoritesFragment">
         <action
-                android:id="@+id/action_mainFragment_to_detailFragment"
-                app:destination="@id/detailFragment" />
+                android:id="@+id/action_favoritesFragment_to_favoriteFragment"
+                app:destination="@id/favoriteFragment" />
     </fragment>
-     <fragment
-             android:id="@+id/detailFragment"
-             android:name="com.abuenoben.challenge.ui.detail.DetailFragment"
-             android:label="Detail">
-         <argument
-                 android:name="favorite"
-                 app:argType="string" />
-     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.abuenoben.challenge.ui.detail.FavoriteFragment"
+        android:label="Favorite">
+        <argument
+            android:name="favorite"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

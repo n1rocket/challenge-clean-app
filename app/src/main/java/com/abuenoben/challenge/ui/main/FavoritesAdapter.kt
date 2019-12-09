@@ -10,10 +10,10 @@ import com.abuenoben.challenge.R
 import kotlinx.android.synthetic.main.cell_favorite.view.*
 
 
-class MainAdapter(
+class FavoritesAdapter(
     val onClick: ((response: String) -> Unit)? = null,
     val onClickRemove: ((response: String) -> Unit)? = null
-) : ListAdapter<String, MainAdapter.StringViewHolder>(Diff()) {
+) : ListAdapter<String, FavoritesAdapter.StringViewHolder>(Diff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StringViewHolder {
         val inflater = LayoutInflater.from(parent.context)
