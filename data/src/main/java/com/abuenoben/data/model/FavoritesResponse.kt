@@ -1,4 +1,4 @@
-package com.abuenoben.challenge.data.model
+package com.abuenoben.data.model
 
 
 data class FavoritesResponse(

@@ -1,8 +1,8 @@
 package com.abuenoben.challenge.setup.di
 
-import com.abuenoben.challenge.data.repository.FavoritesRepository
-import com.abuenoben.challenge.data.usecases.GetFavoriteUseCase
-import com.abuenoben.challenge.data.usecases.GetFavoritesUseCase
+import com.abuenoben.data.FavoritesRepository
+import com.abuenoben.domain.usecases.GetFavoriteUseCase
+import com.abuenoben.domain.usecases.GetFavoritesUseCase
 import org.koin.dsl.module
 
 val useCasesModule = module {

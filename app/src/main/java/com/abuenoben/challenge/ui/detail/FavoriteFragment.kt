@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.abuenoben.challenge.R
-import com.abuenoben.challenge.data.model.FavoriteResponse
 import com.abuenoben.challenge.setup.extensions.lazyUnsychronized
+import com.abuenoben.data.model.FavoriteResponse
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.favorite_fragment.*
 import kotlinx.android.synthetic.main.favorites_fragment.name

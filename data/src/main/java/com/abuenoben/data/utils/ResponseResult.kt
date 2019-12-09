@@ -1,4 +1,4 @@
-package com.abuenoben.challenge.setup.network
+package com.abuenoben.data.utils
 
 sealed class ResponseResult<out T : Any> {
     data class Success<out T : Any>(val value: T) : ResponseResult<T>()

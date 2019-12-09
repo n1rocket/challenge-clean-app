@@ -1,7 +1,7 @@
-package com.abuenoben.challenge.setup.usecase
+package com.abuenoben.domain.usecases
 
-import com.abuenoben.challenge.setup.network.ResponseResult
-import com.abuenoben.challenge.setup.utils.Either
+import com.abuenoben.data.utils.Either
+import com.abuenoben.data.utils.ResponseResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

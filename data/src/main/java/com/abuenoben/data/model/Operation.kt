@@ -1,4 +1,4 @@
-package com.abuenoben.challenge.setup.network
+package com.abuenoben.data.model
 
 data class Operation(
     val message: String,

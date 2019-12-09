@@ -2,6 +2,7 @@ package com.abuenoben.challenge.setup.network
 
 import android.content.Context
 import com.abuenoben.challenge.setup.extensions.fromJson
+import com.abuenoben.data.utils.ResponseResult
 import com.google.gson.Gson
 import retrofit2.Response
 

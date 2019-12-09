@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //noinspection DifferentStdlibGradleVersion
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
+
+    implementation project(':data')
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

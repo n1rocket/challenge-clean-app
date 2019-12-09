@@ -1,10 +1,9 @@
-package com.abuenoben.challenge.data.usecases
+package com.abuenoben.domain.usecases
 
-import com.abuenoben.challenge.data.model.FavoritesResponse
-import com.abuenoben.challenge.data.repository.FavoritesRepository
-import com.abuenoben.challenge.setup.network.ResponseResult
-import com.abuenoben.challenge.setup.usecase.BaseUseCase
-import com.abuenoben.challenge.setup.utils.Either
+import com.abuenoben.data.FavoritesRepository
+import com.abuenoben.data.model.FavoritesResponse
+import com.abuenoben.data.utils.Either
+import com.abuenoben.data.utils.ResponseResult
 
 class GetFavoritesUseCase(
     private val repository: FavoritesRepository

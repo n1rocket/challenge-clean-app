@@ -1,15 +1,18 @@
 package com.abuenoben.challenge.setup.di
 
-import com.abuenoben.challenge.data.repository.FavoritesRepository
-import com.abuenoben.challenge.data.repository.FavoritesRepositoryImpl
-import com.abuenoben.challenge.data.repository.FavoritesService
-import com.abuenoben.challenge.setup.network.NetworkExceptionController
+import com.abuenoben.challenge.setup.network.FavoritesRemoteDataSourceImpl
+import com.abuenoben.challenge.setup.network.FavoritesService
+import com.abuenoben.challenge.setup.network.NetworkExceptionControllerImpl
+import com.abuenoben.data.FavoritesRemoteDataSource
+import com.abuenoben.data.FavoritesRepository
+import com.abuenoben.data.FavoritesRepositoryImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single { NetworkExceptionController(androidContext()) }
-    single { provideFavoritesRepository(get(), get()) }
+    single { NetworkExceptionControllerImpl(androidContext()) }
+    single { provideFavoritesRemoteDataSource(get(), get()) }
+    single { provideFavoritesRepository(get()) }
     /*factory {
         MockFavoritesRepositoryImpl(
             get()
@@ -19,8 +22,17 @@ val repositoryModule = module {
 }
 
 fun provideFavoritesRepository(
-    favoritesService: FavoritesService,
-    networkExceptionController: NetworkExceptionController
+    favoritesRemoteDataSource: FavoritesRemoteDataSource
 ): FavoritesRepository {
-    return FavoritesRepositoryImpl(favoritesService, networkExceptionController)
+    return FavoritesRepositoryImpl(favoritesRemoteDataSource)
+}
+
+fun provideFavoritesRemoteDataSource(
+    favoritesService: FavoritesService,
+    networkExceptionController: NetworkExceptionControllerImpl
+): FavoritesRemoteDataSource {
+    return FavoritesRemoteDataSourceImpl(
+        favoritesService,
+        networkExceptionController
+    )
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.abuenoben.challenge.setup.utils
+package com.abuenoben.data.utils
 
 /**
  * Represents a value of one of two possible types (a disjoint union).
@@ -52,7 +52,9 @@ fun <A, B, C> ((A) -> B).c(f: (B) -> C): (A) -> C = {
 
 fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> =
     when (this) {
-        is Either.Left -> Either.Left(a)
+        is Either.Left -> Either.Left(
+            a
+        )
         is Either.Right -> fn(b)
     }
 

@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abuenoben.challenge.data.model.FavoritesResponse
-import com.abuenoben.challenge.data.usecases.GetFavoritesUseCase
-import com.abuenoben.challenge.setup.network.ResponseResult
 import com.abuenoben.challenge.setup.utils.SingleLiveEvent
+import com.abuenoben.data.model.FavoritesResponse
+import com.abuenoben.data.utils.ResponseResult
+import com.abuenoben.domain.usecases.GetFavoritesUseCase
 
 class FavoritesViewModel(private val getFavoritesUseCase: GetFavoritesUseCase) : ViewModel() {
 
