@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.abuenoben.challenge.R
 import com.abuenoben.challenge.setup.extensions.lazyUnsychronized
-import com.abuenoben.data.model.FavoriteResponse
+import com.abuenoben.data.model.local.Favorite
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.favorite_fragment.*
 import kotlinx.android.synthetic.main.favorites_fragment.name
@@ -50,7 +50,7 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-    private fun fillInfo(favorite: FavoriteResponse) {
+    private fun fillInfo(favorite: Favorite) {
         name.text = favorite.name
         hot.text = favorite.hot.toString()
         ricCode.text = favorite.ricCode

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abuenoben.challenge.setup.utils.SingleLiveEvent
-import com.abuenoben.data.model.FavoritesResponse
+import com.abuenoben.data.model.local.Favorites
 import com.abuenoben.data.utils.ResponseResult
 import com.abuenoben.domain.usecases.GetFavoritesUseCase
 
@@ -63,9 +63,9 @@ class FavoritesViewModel(private val getFavoritesUseCase: GetFavoritesUseCase) :
 
     }
 
-    private fun handleSuccess(response: ResponseResult.Success<FavoritesResponse>) {
+    private fun handleSuccess(favorites: Favorites) {
         data.clear()
-        data.addAll(response.value.result)
+        data.addAll(favorites.items)
         updateUI(FavoritesState.Success(data))
     }
 
@@ -81,7 +81,7 @@ class FavoritesViewModel(private val getFavoritesUseCase: GetFavoritesUseCase) :
             }
         )
 
-        if (data.isEmpty()){
+        if (data.isEmpty()) {
             updateUI(FavoritesState.Empty)
         }
     }

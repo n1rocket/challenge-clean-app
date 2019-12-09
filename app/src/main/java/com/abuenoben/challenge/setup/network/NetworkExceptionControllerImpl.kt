@@ -3,7 +3,7 @@ package com.abuenoben.challenge.setup.network
 import android.content.Context
 import com.abuenoben.challenge.R
 import com.abuenoben.challenge.setup.extensions.fromJson
-import com.abuenoben.data.model.ErrorBean
+import com.abuenoben.data.model.network.ErrorBean
 import com.abuenoben.data.utils.Either
 import com.abuenoben.data.utils.NetworkExceptionController
 import com.abuenoben.data.utils.ResponseResult

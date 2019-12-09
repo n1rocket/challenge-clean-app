@@ -1,7 +1,7 @@
 package com.abuenoben.data
 
-import com.abuenoben.data.model.FavoriteResponse
-import com.abuenoben.data.model.FavoritesResponse
+import com.abuenoben.data.model.network.FavoriteResponse
+import com.abuenoben.data.model.network.FavoritesResponse
 import com.abuenoben.data.utils.Either
 import com.abuenoben.data.utils.ResponseResult
 

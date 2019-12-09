@@ -1,15 +1,15 @@
 package com.abuenoben.domain.usecases
 
 import com.abuenoben.data.FavoritesRepository
-import com.abuenoben.data.model.FavoriteResponse
+import com.abuenoben.data.model.local.Favorite
 import com.abuenoben.data.utils.Either
 import com.abuenoben.data.utils.ResponseResult
 
 class GetFavoriteUseCase(
     private val repository: FavoritesRepository
-) : BaseUseCase<ResponseResult.Success<FavoriteResponse>, GetFavoriteUseCase.Params>() {
+) : BaseUseCase<Favorite, GetFavoriteUseCase.Params>() {
 
-    override suspend fun run(params: Params): Either<ResponseResult.Failure, ResponseResult.Success<FavoriteResponse>> {
+    override suspend fun run(params: Params): Either<ResponseResult.Failure, Favorite> {
         return repository.favorite(params.id)
     }
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abuenoben.data.model.FavoriteResponse
+import com.abuenoben.data.model.local.Favorite
 import com.abuenoben.data.utils.ResponseResult
 import com.abuenoben.domain.usecases.GetFavoriteUseCase
 
@@ -12,11 +12,11 @@ class FavoriteViewModel(private val getFavoriteUseCase: GetFavoriteUseCase) : Vi
     sealed class FavoriteState {
         object Loading : FavoriteState()
         object Empty : FavoriteState()
-        data class Success(val favorite: FavoriteResponse) : FavoriteState()
+        data class Success(val favorite: Favorite) : FavoriteState()
         data class Error(val message: String) : FavoriteState()
     }
 
-    private var data: FavoriteResponse? = null
+    private var data: Favorite? = null
     private lateinit var state: FavoriteState
 
     private val stateLiveData = MutableLiveData<FavoriteState>()
@@ -47,8 +47,8 @@ class FavoriteViewModel(private val getFavoriteUseCase: GetFavoriteUseCase) : Vi
         }
     }
 
-    private fun handleSuccess(response: ResponseResult.Success<FavoriteResponse>) {
-        data = response.value
+    private fun handleSuccess(favorite: Favorite) {
+        data = favorite
         data?.let { updateUI(FavoriteState.Success(it)) }
     }
 
