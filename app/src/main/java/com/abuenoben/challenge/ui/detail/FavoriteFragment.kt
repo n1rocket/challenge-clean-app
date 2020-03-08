@@ -7,15 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.abuenoben.challenge.R
+import com.abuenoben.challenge.databinding.FavoriteFragmentBinding
 import com.abuenoben.challenge.setup.extensions.lazyUnsychronized
 import com.abuenoben.data.model.local.Favorite
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.favorite_fragment.*
-import kotlinx.android.synthetic.main.favorites_fragment.name
 import org.koin.android.ext.android.inject
 
 class FavoriteFragment : Fragment() {
     private val viewModel: FavoriteViewModel by inject()
+
+    private var _binding: FavoriteFragmentBinding? = null
+    private val binding get() = _binding!!
 
     private val favoriteID: String? by lazyUnsychronized {
         arguments?.let { FavoriteFragmentArgs.fromBundle(it).favorite }
@@ -24,14 +26,15 @@ class FavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.favorite_fragment, container, false)
+    ): View{
+        _binding = FavoriteFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Observe items from ViewModel for update list
-        viewModel.stateLiveData().observe(this, Observer { onStateChange(it) })
-
+        viewModel.stateLiveData().observe(viewLifecycleOwner, Observer { onStateChange(it) })
         viewModel.loadItem(favoriteID)
     }
 
@@ -40,35 +43,38 @@ class FavoriteFragment : Fragment() {
             is FavoriteViewModel.FavoriteState.Loading -> changeLoading()
             is FavoriteViewModel.FavoriteState.Empty -> changeEmptyState()
             is FavoriteViewModel.FavoriteState.Success -> fillInfo(theState.favorite)
-            is FavoriteViewModel.FavoriteState.Error -> view?.let {
-                Snackbar.make(
-                    it,
-                    theState.message,
-                    Snackbar.LENGTH_SHORT
-                ).show()
-            }
+            is FavoriteViewModel.FavoriteState.Error -> Snackbar.make(
+                binding.root,
+                theState.message,
+                Snackbar.LENGTH_SHORT
+            ).show()
         }
     }
 
     private fun fillInfo(favorite: Favorite) {
-        name.text = favorite.name
-        hot.text = favorite.hot.toString()
-        ricCode.text = favorite.ricCode
-        category.text = favorite.category
+        binding.name.text = favorite.name
+        binding.hot.text = favorite.hot.toString()
+        binding.ricCode.text = favorite.ricCode
+        binding.category.text = favorite.category
     }
 
     private fun changeLoading() {
         //refresh.isRefreshing = isRefreshing
-        name.text = "Loading"
-        hot.text = "Loading"
-        ricCode.text = "Loading"
-        category.text = "Loading"
+        binding.name.text = "Loading"
+        binding.hot.text = "Loading"
+        binding.ricCode.text = "Loading"
+        binding.category.text = "Loading"
     }
 
     private fun changeEmptyState() {
-        name.text = "No info"
-        hot.text = "No info"
-        ricCode.text = "No info"
-        category.text = "No info"
+        binding.name.text = "No info"
+        binding.hot.text = "No info"
+        binding.ricCode.text = "No info"
+        binding.category.text = "No info"
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

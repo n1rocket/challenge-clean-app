@@ -5,7 +5,6 @@ apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.abuenoben.challenge"
         minSdkVersion 24
@@ -19,6 +18,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    viewBinding {
+        enabled = true
     }
 
     flavorDimensions "normal"
@@ -36,15 +39,9 @@ android {
             buildConfigField "String", "BASE_URL", '"https://challenge.ninetynine.com/"'
         }
 
-        tes {
+        beta {
             dimension "normal"
-            buildConfigField "String", "ENVIRONMENT", '"TEST"'
-            buildConfigField "String", "BASE_URL", '"https://challenge.ninetynine.com/"'
-        }
-
-        pre {
-            dimension "normal"
-            buildConfigField "String", "ENVIRONMENT", '"PRE"'
+            buildConfigField "String", "ENVIRONMENT", '"BETA"'
             buildConfigField "String", "BASE_URL", '"https://challenge.ninetynine.com/"'
         }
 
@@ -60,19 +57,19 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
 
     //Design
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
     //Pictures
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     //LifeCycle
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     //PlayServices
     implementation "com.google.android.gms:play-services-location:17.0.0"
@@ -88,12 +85,12 @@ dependencies {
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
 
     //Navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
 
     // Kotlin Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
 
     //Modules
     implementation project(':domain')
